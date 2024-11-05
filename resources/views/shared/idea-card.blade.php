@@ -3,20 +3,20 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-center">
                 <img style="width:50px" class="me-2 avatar-sm rounded-circle"
-                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed=Mario" alt="Mario Avatar">
+                    src="https://api.dicebear.com/6.x/fun-emoji/svg?seed={{ $idea->user->name }}" alt="{{ $idea->user->name }}">
                 <div>
-                    <h5 class="card-title mb-0"><a href="#"> Mario
+                    <h5 class="card-title mb-0"><a href="#"> {{ $idea->user->name }}
                         </a></h5>
                 </div>
             </div>
             <div>
-                <form action="{{ route('idea.destroy', $idea->id) }}" method="POST">
+                <form action="{{ route('ideas.destroy', $idea->id) }}" method="POST">
                     @csrf
                     @method('delete')
-                    <a href="{{ route('idea.edit', $idea->id) }}" class="me-2">
+                    <a href="{{ route('ideas.edit', $idea->id) }}" class="me-2">
                         Edit
                     </a>
-                    <a href="{{ route('idea.show', $idea->id) }}">
+                    <a href="{{ route('ideas.show', $idea->id) }}">
                         View
                     </a>
                     <button class="btn btn-danger btn-sm">X</button>
@@ -28,7 +28,7 @@
     </div>
     <div class="card-body">
         @if ($editing ?? false)
-            <form action="{{ route('idea.update', $idea->id) }}" method="POST">
+            <form action="{{ route('ideas.update', $idea->id) }}" method="POST">
                 @csrf
                 @method("put")
                 <div class="mb-3">
